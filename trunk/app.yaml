@@ -1,0 +1,14 @@
+application: enproxy
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /images
+  static_dir: images
+  
+- url: /enproxy.py
+  script: enproxy.py
+  
+- url: /.*
+  script: index.py
