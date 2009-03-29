@@ -2,21 +2,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <script language="javascript">
-
-        function p_submit() {
-            var scheme = '';
-            if (document.main.scheme[0].checked)
-                scheme = document.main.scheme[0].value;
-            else
-                scheme = document.main.scheme[1].value;
-
-            document.p.action = scheme + '://' + 'enproxy.appspot.com/' + urlEncode( document.main.q.value );
-            document.p.submit();
-            return false;
-        }
-    </script>
 </head>
 <body>
     <table border="0" align="center" width="480px">
@@ -52,9 +37,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
                 <div style="padding-left: 20px">
                     <div>
-						<form action="enproxy.py" method="post" name="main" onsubmit="return p_submit()">
-							<input type="text" name="q" size="40" />
+						<form action="enproxy.py" method="post">
+							<input type="text" name="url" size="40" />
 							<input type="submit" value=" Go " />
+						<!--	
 							<label>
 								<br />
 								<input type="radio" name="scheme" value="http" checked="checked" />
@@ -64,6 +50,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 								<input type="radio" name="scheme" value="https" />
 							</label>
 							HTTPS
+						-->	
 						</form>
 					</div>
                 </div>
