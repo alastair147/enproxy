@@ -1,4 +1,5 @@
 import os
+import logging
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -46,8 +47,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         headers[k] = v
       
     # fetch url
+    ##logging.debug('[request.headers]' + self.request.headers.items())
+    ##logging.debug('[resp.headers]' + headers.items())
     resp = urlfetch.fetch( url, None, urlfetch.GET, headers, False, False );
-
+    ##logging.debug('[resp.headers]' + resp.headers.items())
+    ##logging.debug('[Content]' + resp.content)
+    
     # filter urls
     # response
     for k, v in resp.headers.iteritems():
