@@ -10,6 +10,20 @@ class MainPage(webapp.RequestHandler):
 
   InitHeaders = ['Connection', 'Accept', 'Accept-Charset', 'Accept-Encoding'
                  'Accept-Language']
+
+  AdTop = '''
+<script type="text/javascript"><!--
+google_ad_client = "pub-7330597899926046";
+/* 728x90, enProxy */
+google_ad_slot = "4639958458";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+'''
   
   def error2(self, msg) : 
     self.redirect('/index.py')
@@ -38,7 +52,7 @@ class MainPage(webapp.RequestHandler):
     # response
     for k, v in resp.headers.iteritems():
         self.response.headers[k] = v
-    content = resp.content
+    content = self.AdTop + resp.content
     self.response.out.write(content)
 
   def get(self):
