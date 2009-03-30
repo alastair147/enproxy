@@ -9,6 +9,12 @@ handlers:
   
 - url: /enproxy.py
   script: enproxy.py
+  secure: optional
   
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+
 - url: /.*
   script: index.py
+  
