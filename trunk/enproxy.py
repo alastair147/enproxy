@@ -50,50 +50,47 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 ##
 ##    return $css; 
   def proxify_html(self, content) :
+    tags = {
+        'a'          : ['href'],
+        'img'        : ['src', 'longdesc'],
+        'image'      : ['src', 'longdesc'],
+        'body'       : ['background'],
+        'base'       : ['href'],
+        'frame'      : ['src', 'longdesc'],
+        'iframe'     : ['src', 'longdesc'],
+        'head'       : ['profile'],
+        'layer'      : ['src'],
+        'input'      : ['src', 'usemap'],
+        'form'       : ['action'],
+        'area'       : ['href'],
+        'link'       : ['href', 'src', 'urn'],
+        'meta'       : ['content'],
+        'param'      : ['value'],
+        'applet'     : ['codebase', 'code', 'object', 'archive'],
+        'object'     : ['usermap', 'codebase', 'classid', 'archive', 'data'],
+        'script'     : ['src'],
+        'select'     : ['src'],
+        'hr'         : ['src'],
+        'table'      : ['background'],
+        'tr'         : ['background'],
+        'th'         : ['background'],
+        'td'         : ['background'],
+        'bgsound'    : ['src'],
+        'blockquote' : ['cite'],
+        'del'        : ['cite'],
+        'embed'      : ['src'],
+        'fig'        : ['src', 'imagemap'],
+        'ilayer'     : ['src'],
+        'ins'        : ['cite'],
+        'note'       : ['src'],
+        'overlay'    : ['src', 'imagemap'],
+        'q'          : ['cite'],
+        'ul'         : ['src']
+    );
+
+    p = re.compile( r'#(<\s*style[^>]*>)(.*?)(<\s*/\s*style[^>]*>)#is' )
     return content
-##    //
-##    // PROXIFY HTML RESOURCE
-##    //
-##    
-##    $tags = array
-##    (
-##        'a'          => array('href'),
-##        'img'        => array('src', 'longdesc'),
-##        'image'      => array('src', 'longdesc'),
-##        'body'       => array('background'),
-##        'base'       => array('href'),
-##        'frame'      => array('src', 'longdesc'),
-##        'iframe'     => array('src', 'longdesc'),
-##        'head'       => array('profile'),
-##        'layer'      => array('src'),
-##        'input'      => array('src', 'usemap'),
-##        'form'       => array('action'),
-##        'area'       => array('href'),
-##        'link'       => array('href', 'src', 'urn'),
-##        'meta'       => array('content'),
-##        'param'      => array('value'),
-##        'applet'     => array('codebase', 'code', 'object', 'archive'),
-##        'object'     => array('usermap', 'codebase', 'classid', 'archive', 'data'),
-##        'script'     => array('src'),
-##        'select'     => array('src'),
-##        'hr'         => array('src'),
-##        'table'      => array('background'),
-##        'tr'         => array('background'),
-##        'th'         => array('background'),
-##        'td'         => array('background'),
-##        'bgsound'    => array('src'),
-##        'blockquote' => array('cite'),
-##        'del'        => array('cite'),
-##        'embed'      => array('src'),
-##        'fig'        => array('src', 'imagemap'),
-##        'ilayer'     => array('src'),
-##        'ins'        => array('cite'),
-##        'note'       => array('src'),
-##        'overlay'    => array('src', 'imagemap'),
-##        'q'          => array('cite'),
-##        'ul'         => array('src')
-##    );
-##
+##    p.sub( 
 ##    preg_match_all('#(<\s*style[^>]*>)(.*?)(<\s*/\s*style[^>]*>)#is', $_response_body, $matches, PREG_SET_ORDER);
 ##
 ##    for ($i = 0, $count_i = count($matches); $i < $count_i; ++$i)
@@ -200,7 +197,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 ##                    {
 ##                        $rebuild = true;
 ##                        $temp = $_base;
-##                        url_parse(complete_url(rtrim($attrs['codebase'], '/') . '/', false), $_base);
+##                        url_parse(complete_url(rtrim($attrs['codebase'], '/') . '/', fals $_base);
 ##                        unset($attrs['codebase']);
 ##                    }
 ##                    if (isset($attrs['code']) && strpos($attrs['code'], '/') !== false)
