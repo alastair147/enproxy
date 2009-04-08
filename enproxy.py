@@ -86,7 +86,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         'overlay'    : ['src', 'imagemap'],
         'q'          : ['cite'],
         'ul'         : ['src']
-    );
+    }
 
     p = re.compile( r'#(<\s*style[^>]*>)(.*?)(<\s*/\s*style[^>]*>)#is' )
     return content
@@ -323,11 +323,13 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     ##logging.debug('[Content]' + resp.content)
     
     # filter urls
-    if headers['Content-Type'] in HtmlContentTypes :
-      content = proxify_html( resp.content )
-    elif headers['Content-Type'] in CssContentTypes :
-      content = proxify_css( resp.content )
-    #else : Content-Length > xxx
+    content = resp.content
+    if resp.headers.has_key('Content-Type') :
+      if resp.headers['Content-Type'] in self.HtmlContentTypes :
+        content = self.proxify_html( resp.content )
+      elif resp.headers['Content-Type'] in self.CssContentTypes :
+        content = self.proxify_css( resp.content )
+      #else : Content-Length > xxx
       
     # response
     for k, v in resp.headers.iteritems():
